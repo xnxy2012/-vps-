@@ -1,0 +1,65 @@
+mac安装git
+Install Homebrew命令
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+安装git      brew install git
+一、安装Git
+在很多教程里，你会发现很多开发人员是通过命令行界面来操作和使用GitHub的。从专业人士角度来说，这也才真正是打开GitHub的正确方式。在Mac OS X中，命令行也就是指Terminal。要在Terminal中通过键入指令的方法来操作GitHub那么正确地安装Git就是一个先决条件。
+通常，Mac OS X中都已经安装了Git。但是，Git的版本未必是最新的。我们仍然建议你安装使用最新版本的Git。下面来检查一下你的Mac电脑上是否已经安装了Git。打开你的Terminal，然后在提示符后面输入 git，如下图所示，如果git命令可以被系统识别，那么就表示你的电脑上已经安装了Git，系统会列出Git的一些使用方法（因为你现在输入的git指令是不完整的）。
+当然，从上面列出Git的一些使用方法中你或许也能看到 通过 git --version 命令可以查看当前安装的Git的版本，让我们来实践一下
+如果你发现你的系统上没有安装最新的Git，那么你可以通过在Terminal中输入下面的指令来自动更新你电脑上的Git
+git clone https://github.com/git/git
+二、创建ssh key、配置git
+1、设置username和email（github每次commit都会记录他们）
+git config --global user.name BothEyes
+git config --global user.email 1993046671@qq.com
+复制代码
+设置后可以通过命名查看：
+
+2、通过终端命令创建ssh key
+ssh-keygen -t rsa -C "1993046671@qq.com"
+复制代码
+回车后会要求确认路径和输入密码，我们这使用默认的一路回车就行。成功的话会在~/下生成.ssh文件夹，进去，打开id_rsa.pub，复制里面的key。
+或者用cat命令查看
+cat .ssh/id_rsa.pub
+复制代码
+3、登录GitHub（默认你已经注册了GitHub账号），添加ssh key，点击Settings，如图
+
+点击New SSH key，如图
+
+添加key，如图
+
+4、链接验证
+ssh -T git@github.com 
+复制代码
+回车后会让你输入之前创建ssh key时候的密码，输入密码之后回车
+终端输出结果
+三、提交本地项目到GitHub
+1、在GitHub上新创建一个 repository或者Start a Project，如图：
+
+2、填写项目信息，如下图所示
+
+点击Create repository,就创好一个工程了。
+3、Clone工程到本地，首先复制ssh 地址
+
+打开终端，这里只是测试，我想把工程下载到本地，首先在终端中切换路径到测试文件夹test，输入以下命令：
+git clone https://github.com/BothEyes1993/AdminTemplate.git
+复制代码
+
+这时，工程已经被克隆到本地了，如下图：
+
+4、既然已经把GitHub上的工程下载到本地了，现在就把我本地的测试demo放进去，一起提交到GitHub上去
+
+5、提交到GitHub，先cd到AdminTemplate
+然后输入：
+//文件添加到仓库（.代表提交所有文件）
+git add .
+
+//把文件提交到仓库
+git commit -m "First Commit"
+
+//上传到github
+git push
+
+push后终端完整输出如下就是提交成功了：
+
+
