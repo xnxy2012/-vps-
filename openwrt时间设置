@@ -1,0 +1,4 @@
+opkg update
+opkg install zoneinfo-asia
+#确认配置openwrt时区为`Asia/Shanghai`, 见 /etc/config/system
+/etc/init.d/system restart
